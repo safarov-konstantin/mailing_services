@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card shadow mb-4">
+        <div class="card-header">
+            {{object}}
+        </div>
+        <div class="card-body">
+            <p> <b>Фамилия</b> {{object.last_name|title}}</p>
+            <hr>
+            <p> <b>Имя</b> {{object.first_name|title}}</p>
+            <hr>
+            <p> <b>Отчетство</b> {{object.surname|title}}</p>
+            <hr>
+            <p> <b>Email</b> {{object.email}}</p>
+            <hr>
+            <p> <b>Комментарий</b> <br> {{object.comment|linebreaks}}</p>
+            <hr>
+            <a href="{% url 'client:clients' %}" class="btn btn-secondary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+                <span class="text">Назад</span>
+              </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+{% endblock %}

@@ -73,13 +73,13 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Клиенты</span>
         </a>
-        <div id="clientMenu" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
+        <div id="clientMenu" class="collapse" aria-labelledby="clientMenu" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">
+                <a class="collapse-item" href="{% url 'client:create_client' %}">
                     <i class="fas fa-fw fa-folder"></i>
                     +создать
                 </a>
-                <a class="collapse-item" href="#">
+                <a class="collapse-item" href=" {% url 'client:clients' %} ">
                     <i class="fas fa-fw fa-folder"></i>
                     все
                 </a>
