@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Сообщения</h6>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">
+              <a href="{% url 'mailing:create_message' %}" class="btn btn-success btn-icon-split"><span class="icon"><i class="fas">+</i></span></a>
+            </th>
+            <th scope="col">Заголовок</th>
+            <th scope="col">Содержание сообщения</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in object_list %}
+            <tr>
+              <th scope="row">
+                <!-- Default dropright button -->
+                <div class="dropright no-arrow">
+                  <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>
+                  <div class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                    <a href="{% url 'mailing:detail_message' object.pk%}" class="dropdown-item">
+                      <i class="fas fa-info-circle"></i>
+                      Смотреть
+                    </a>
+                    <a href="{% url 'mailing:edit_message' object.pk%}" class="dropdown-item">
+                      <i class="fas fa-circle"></i>
+                      Редактировать
+                    </a>
+                    <a href="{% url 'mailing:delite_message' object.pk%}" class="dropdown-item bg-danger">
+                      <i class="fas fa-trash"></i>
+                      Удалить
+                    </a>
+                  </div>
+                </div>
+              </th>
+              <td>{{ object.title|title }}</td>
+              <td>{{ object.body|title }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

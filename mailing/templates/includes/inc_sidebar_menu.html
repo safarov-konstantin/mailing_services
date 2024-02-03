@@ -96,11 +96,11 @@
         </a>
         <div id="messagMenu" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">
+                <a class="collapse-item" href="{% url 'mailing:create_message' %}">
                     <i class="fas fa-fw fa-folder"></i>
                     +создать
                 </a>
-                <a class="collapse-item" href="#">
+                <a class="collapse-item" href="{% url 'mailing:messages'%}">
                     <i class="fas fa-fw fa-folder"></i>
                     все
                 </a>
