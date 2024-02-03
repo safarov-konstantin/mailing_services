@@ -8,7 +8,7 @@ class Message(models.Model):
     title = models.CharField(max_length=100, verbose_name='Тема письма')
     body = models.TextField(verbose_name='Тело письма')
 
-    def str(self):
+    def __str__(self):
         """
         Представление сообщения
         """

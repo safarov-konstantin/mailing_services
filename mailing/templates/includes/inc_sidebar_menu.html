@@ -38,7 +38,7 @@
         <div id="mailingMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header"></h6>
-                <a class="collapse-item" href="#">
+                <a class="collapse-item" href="{% url 'mailing:create_mailing' %}">
                     <i class="fas fa-fw fa-wrench"></i>
                     + создать
                 </a>
@@ -50,7 +50,7 @@
                     <i class="fas fa-fw fa-wrench"></i>
                     не активные
                 </a>
-                <a class="collapse-item" href="#">
+                <a class="collapse-item" href="{% url 'mailing:mailings' %}">
                     <i class="fas fa-fw fa-wrench"></i>
                     все
                 </a> 

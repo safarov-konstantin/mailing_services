@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Сообщения</h6>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">
+              <a href="{% url 'mailing:create_mailing' %}" class="btn btn-success btn-icon-split"><span class="icon"><i class="fas">+</i></span></a>
+            </th>
+            <th scope="col">Время рассылки</th>
+            <th scope="col">Дата рассылки</th>
+            <th scope="col">Периодичность</th>
+            <th scope="col">Статус рассылки</th>
+            <th scope="col">Клиент</th>
+            <th scope="col">Сообщение</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in object_list %}
+            <tr>
+              <th scope="row">
+                <!-- Default dropright button -->
+                <div class="dropright no-arrow">
+                  <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>
+                  <div class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                    <a href="{% url 'mailing:detail_mailing' object.pk%}" class="dropdown-item">
+                      <i class="fas fa-info-circle"></i>
+                      Смотреть
+                    </a>
+                    <a href="{% url 'mailing:edit_mailing' object.pk%}" class="dropdown-item">
+                      <i class="fas fa-circle"></i>
+                      Редактировать
+                    </a>
+                    <a href="{% url 'mailing:delite_mailing' object.pk%}" class="dropdown-item bg-danger">
+                      <i class="fas fa-trash"></i>
+                      Удалить
+                    </a>
+                  </div>
+                </div>
+              </th>
+              <td>{{ object.time}}</td>
+              <td>{{ object.date}}</td>
+              <td>{{ object.get_periodisity_display}}</td>
+              <td>{{ object.get_status_display}}</td>
+              <td>
+                {% if  object.client%}
+                  {% for client in object.client.all %}
+                    {{client}}<br/>
+                   {% endfor %}
+                {% endif %}
+              </td>
+              <td>
+                {{ object.message}}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

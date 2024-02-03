@@ -1,5 +1,5 @@
 from django import forms
-from mailing.models import Message
+from mailing.models import Message, Mailing
 
 
 class StyleFormMixin:
@@ -24,4 +24,23 @@ class MassegeForm(StyleFormMixin, forms.ModelForm):
         fields = [
             'title',
             'body',
+        ]
+
+
+class MailingForm(StyleFormMixin, forms.ModelForm):
+    """
+    Форма модели рассылки
+    """
+    class Meta:
+        """
+        Методанные формы модели сообщения
+        """
+        model = Mailing
+        fields = [
+            'time',
+            'date',
+            'periodisity',
+            'status',
+            'client',
+            'message',
         ]
