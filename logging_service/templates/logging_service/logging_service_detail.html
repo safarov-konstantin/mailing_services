@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card shadow mb-4">
+        <div class="card-header">
+            {{object}}
+        </div>
+        <div class="card-body">
+            <p> <b>Время последеней попытки</b> {{object.time}}</p>
+            <hr>
+            <p> <b>Статус</b> {{object.status}}</p>
+            <hr>
+            <p> <b>Рассылка</b> {{object.mailing}}</p>
+            <hr>
+            <p> <b>Ответ сервера</b><br>{{object.server_response|linebreaks}}</p>
+            <hr>
+            <a href="{% url 'ogging_service:logging_services' %}" class="btn btn-secondary btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+                <span class="text">Назад</span>
+              </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+{% endblock %}

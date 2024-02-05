@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Логи рассылки</h6>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">
+              --
+            </th>
+            <th scope="col">Время последеней попытки</th>
+            <th scope="col">Статус попытки</th>
+            <th scope="col">Ответ сервера</th>
+            <th scope="col">Рассылка</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in object_list %}
+            <tr>
+              <th scope="row">
+                <!-- Default dropright button -->
+                <div class="dropright no-arrow">
+                  <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>
+                  <div class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                    <a href="{% url 'logging_service:detail_logging_service' object.pk%}" class="dropdown-item">
+                      <i class="fas fa-info-circle"></i>
+                      Смотреть
+                    </a>
+                    <a href="{% url 'logging_service:delite_logging_service' object.pk%}" class="dropdown-item bg-danger">
+                      <i class="fas fa-trash"></i>
+                      Удалить
+                    </a>
+                  </div>
+                </div>
+              </th>
+              <td>{{ object.time}}</td>
+              <td>{{ object.mailing}}</td>
+              <td>{{ object.get_status_diaplay }}</td>
+              <td>{{ object.server_response|linebreaks }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

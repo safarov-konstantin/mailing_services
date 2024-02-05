@@ -44,3 +44,4 @@ class MailingForm(StyleFormMixin, forms.ModelForm):
             'client',
             'message',
         ]
+        
