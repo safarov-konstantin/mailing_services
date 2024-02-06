@@ -20,7 +20,7 @@
         <tbody>
           {% for object in object_list %}
             <tr>
-              <th scope="row">
+              <td scope="row">
                 <!-- Default dropright button -->
                 <div class="dropright no-arrow">
                   <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a>
@@ -36,11 +36,11 @@
                     </a>
                   </div>
                 </div>
-              </th>
+              </td>
               <td>{{ object.time}}</td>
-              <td>{{ object.mailing}}</td>
-              <td>{{ object.get_status_diaplay }}</td>
+              <td>{{ object.status}}</td>
               <td>{{ object.server_response|linebreaks }}</td>
+              <td>{{ object.mailing}}</td>
             </tr>
           {% endfor %}
         </tbody>

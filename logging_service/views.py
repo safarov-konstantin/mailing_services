@@ -9,10 +9,10 @@ class LogMailingListView(ListView):
 
 class LogMailingDeleteView(DeleteView):
     model = LogMailing
-    template_name = 'logging_service/logging_service_detail.html'
+    template_name = 'logging_service/logging_service_confirm_delete.html'
     success_url = reverse_lazy('logging_service:logging_services')
 
 
 class LogMailingDetailView(DetailView):
     model = LogMailing
-    template_name = 'logging_service/logging_service_confirm_delete.html'
+    template_name = 'logging_service/logging_service_detail.html'
