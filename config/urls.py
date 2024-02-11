@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('mailing.urls', namespace='mailing')),
     path('client/', include('client.urls', namespace='client')),
     path('users/', include('users.urls', namespace='users')),
-    path('logging_service/', include('logging_service.urls', namespace='logging_service'))
+    path('logging_service/', include('logging_service.urls', namespace='logging_service')),
+    path('blog/', include('blog.urls', namespace='blog')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
