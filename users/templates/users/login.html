@@ -1,0 +1,21 @@
+{% extends 'users/base_users.html' %}
+{% block forms_for_users %}
+  <div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Добро пожаловать!</h1>
+    </div>
+    <form class="user" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary btn-user btn-block">Вход</button>
+      <hr />
+    <div class="text-center mb-2">
+      <a class="btn btn-primary btn-user btn-block btn-danger" href="{% url 'users:recovery' %}">Востановление</a>
+    </div>
+    <div class="text-center mb-2">
+      <a class="btn btn-primary btn-user btn-block btn btn-success" href="{% url 'users:register' %}">Регистрация</a>
+    </div>
+    <hr />
+    </form>
+  </div>
+{% endblock %}

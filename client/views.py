@@ -1,4 +1,5 @@
 from client.models import Client
+from django.contrib.auth.mixins import LoginRequiredMixin
 from client.forms import ClientForm
 from django.urls import reverse_lazy
 from django.views.generic import ( 
@@ -10,26 +11,26 @@ from django.views.generic import (
 )
 
 
-class ClientCreateView(CreateView):
+class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy('client:clients')
 
 
-class ClientListView(ListView):
+class ClientListView(LoginRequiredMixin, ListView):
     model = Client
 
 
-class ClientUpdateView(UpdateView):
+class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     form_class = ClientForm
     success_url = reverse_lazy('client:clients')
 
 
-class ClietnDeleteView(DeleteView):
+class ClietnDeleteView(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = reverse_lazy('client:clients')
 
 
-class ClietnDetailView(DetailView):
+class ClietnDetailView(LoginRequiredMixin, DetailView):
     model = Client

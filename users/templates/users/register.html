@@ -1,0 +1,17 @@
+{% extends 'users/base_users.html' %}
+{% block forms_for_users %}
+  <div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Регистрация</h1>
+    </div>
+    <form class="user" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary btn-user btn-block">Регистрация</button>
+    </form>
+    <hr />
+    <div class="text-center">
+      <p>Вам на указанную почту придет потверждения о регистрации. Пройдите по данной ссылке!</p>
+    </div>
+  </div>
+{% endblock %}

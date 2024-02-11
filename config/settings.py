@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'client',
     'logging_service',
     'mailing',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,9 @@ EMAIL_PORT = getenv('EMAIL_PORT')
 EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = getenv('EMAIL_USE_SSL') == 'True'
+
+# Settings user model
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/users/'
+LOGIN_URL = '/users/'

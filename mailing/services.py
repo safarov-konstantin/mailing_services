@@ -35,13 +35,15 @@ def send_mailing():
 
             if bool(response):
                 status_log = 'success'
+                server_response = 'ОК'
             else:
-                status_log = 'error'     
+                status_log = 'error'
+                server_response = 'Ошибка'     
 
             log = LogMailing.objects.create(
                 time=current_time,
                 status=status_log,
-                server_response='OK',
+                server_response=server_response,
                 mailing=mailing
             )
 
@@ -65,8 +67,8 @@ def send_mailing():
                 server_response=e,
                 mailing=mailing
             )
-            log.save() 
-        
+            log.save()
+
         except Exception as e:
 
             log = LogMailing.objects.create(

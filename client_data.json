@@ -1,0 +1,1 @@
+[{"model": "client.client", "pk": 1, "fields": {"first_name": "Тест1", "last_name": "Тест1", "surname": "Тестович1", "comment": "Комментарий тест 1", "email": "test1@test.ru"}}, {"model": "client.client", "pk": 2, "fields": {"first_name": "Тест2", "last_name": "Тест2", "surname": "Тестович2", "comment": "Комментарий тест2", "email": "test2@test.ru"}}]
