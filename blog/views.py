@@ -2,6 +2,8 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from blog.models import Page
 from pytils.translit import slugify
+from django.conf import settings
+from django.core.cache import cache
 
 
 class PageCreateView(CreateView):
@@ -36,9 +38,15 @@ class PageUpdateView(UpdateView):
 class PageListView(ListView):
     model = Page
 
-    def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)  
-        queryset = queryset.filter(is_published=True)
+    def get_queryset(self, *args, **kwargs):  
+        if settings.CACHES_ENABLED:
+            key = 'page_list'
+            queryset = cache.get(key)
+            if queryset is None:
+                queryset = Page.objects.filter(is_published=True)
+                cache.set(key, queryset)
+        else:
+            queryset = Page.objects.filter(is_published=True)
         return queryset
 
 

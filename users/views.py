@@ -3,13 +3,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import View, CreateView, UpdateView, TemplateView
+from django.views.generic import View, CreateView, UpdateView, TemplateView, ListView
 from users.models import User
 from users.forms import UserForm, ProfileForm
 from config.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.hashers import make_password
+from django.http import Http404
 
 
 class LoginView(BaseLoginView):
@@ -116,3 +117,37 @@ class VerificationView(View):
             pass
 
         return redirect('users:login')
+
+
+class UserListView(LoginRequiredMixin, ListView):
+    """
+    Контреллер для списка пользователей
+    """
+    model = User
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        _user = self.request.user
+        if not _user.groups.filter(name = "managers").exists():
+            raise Http404("Given query not found....")  
+        else:
+            return queryset
+
+
+class ActionUserView(View):
+    """
+    Контроллер для верификации пользователя по Email
+    """
+    def get(self, request):
+        pk = request.GET.get('pk')
+        try:
+            user = User.objects.get(pk=pk)
+            if user.is_active:
+                user.is_active = False
+            else:
+                user.is_active = True
+            user.save()      
+        except:      
+            pass
+
+        return redirect('users:list_users')

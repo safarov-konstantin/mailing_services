@@ -1,5 +1,6 @@
 from django import forms
 from mailing.models import Message, Mailing
+from client.models import Client
 
 
 class StyleFormMixin:
@@ -31,6 +32,14 @@ class MailingForm(StyleFormMixin, forms.ModelForm):
     """
     Форма модели рассылки
     """
+
+    def __init__(self, *args, **kwargs):
+        _user = kwargs['user']
+        del kwargs['user']
+        super().__init__(*args, **kwargs)
+        self.fields['client'].queryset = Client.objects.filter(owner=_user)
+        self.fields['message'].queryset = Message.objects.filter(owner=_user)
+
     class Meta:
         """
         Методанные формы модели сообщения

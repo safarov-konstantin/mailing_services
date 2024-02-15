@@ -4,3 +4,4 @@ Pillow
 ipython
 pytils
 python-dotenv
+redis

@@ -1,4 +1,5 @@
 {% load static %}
+{% load castom_filter %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -29,7 +30,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        {% include "includes/inc_sidebar_menu.html" %}
+        {% if request.user|has_group:"managers" %} 
+            {% include "includes/inc_sidebar_menu_managers.html" %}
+        {% else %}     
+            {% include "includes/inc_sidebar_menu.html" %}
+        {% endif %}    
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

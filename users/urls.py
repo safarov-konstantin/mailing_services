@@ -6,7 +6,9 @@ from users.views import (
     RegisterView,
     VerificationView,
     ProfileView,
-    RecoveryUpdateView
+    RecoveryUpdateView,
+    UserListView,
+    ActionUserView
 )
 
 app_name = UsersConfig.name
@@ -17,5 +19,7 @@ urlpatterns = [
    path('register/', RegisterView.as_view(), name='register'),
    path('verification/', VerificationView.as_view(), name='verification'),
    path('profile/', ProfileView.as_view(), name='profile'),
-   path('recovery/', RecoveryUpdateView.as_view(), name='recovery')
+   path('recovery/', RecoveryUpdateView.as_view(), name='recovery'),
+   path('list_users/', UserListView.as_view(), name='list_users'),
+   path('list_users/action_user/', ActionUserView.as_view(), name='action_user') 
 ]
